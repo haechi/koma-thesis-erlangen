@@ -31,7 +31,19 @@ The fonts can be changed in the master file. There are option for two page print
 
 Everything in order to compile the sample thesis.
 
-5. License
+5. Examples
+----------
+
+Tile page
+
+![Title page](http://haechi.me/assets/images/koma-thesis-erlangen-01.jpg)
+
+
+Chapter opening with hanging and moved chapter number
+
+![Chapter opening](http://haechi.me/assets/images/koma-thesis-erlangen-02.jpg)
+
+6. License
 ----------
 
 This template is provided as it, no strings attached. 
