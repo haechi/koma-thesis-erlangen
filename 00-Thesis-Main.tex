@@ -1,0 +1,198 @@
+\documentclass[12pt,a4paper]{scrreprt}
+% KOMA script report style, font size 12pt, A4 size paper
+
+\KOMAoptions{parskip=half,numbers=noenddot,listof=totoc,bibliography=totoc}
+% Separate paragraphs with space, no end dot for section no.,
+% list of figure and tables in TOC, biliography in TOC
+
+\KOMAoptions{twoside=on,open=right}
+% Two page printing, chapter opening on right page 
+
+\def\chapmar{1}                         % 1=On, chap. no moved into margin
+
+\usepackage{scrpage2}                   % Header and footer
+\usepackage{mathpazo}                   % URW Palladio math font
+\usepackage[no-math]{fontspec}          % Load custom otf font
+\usepackage{polyglossia}                % Language support 
+\usepackage{amsmath}                    % Math package				
+\usepackage{graphicx}                   % Includegraphics
+\usepackage[bf,up,hang]{subfigure}      % Subfigures
+\usepackage[small,bf,up,hang]{caption}  % Better caption layout
+\usepackage[percent]{overpic}           % Overlay symboles for graphs
+\usepackage{nicefrac}                   % Diagonal fraction line
+\usepackage{multirow}                   % Multirows for tables
+\usepackage{booktabs}                   % Table rulers
+\usepackage{colortbl}                   % Colored tables 
+\usepackage{tabularx}                   % Adjutable table width
+\usepackage{array}                      % Advanced table control
+\usepackage{microtype}                  % Font expansion
+\usepackage{xspace}                     % Enter space in macros
+\usepackage{hyperref}                   % Hypertext reference
+\usepackage{natbib}                     % Author-date system
+\usepackage{listings}                   % Source code listing
+
+% ---------------------------------------------------------------	
+% Global Settings
+
+% Syntax Highlighting
+\lstset{%
+	language=Matlab,
+	basicstyle=\scriptsize\ttfamily,
+	showstringspaces=false,
+	tabsize=3,
+	prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	frame=single,
+	keywordstyle=\color[rgb]{0,0,1},
+	commentstyle=\color[rgb]{0.133,0.545,0.133},
+	stringstyle=\color[rgb]{0.627,0.126,0.941},
+	morekeywords={properties,methods,classdef},
+	deletekeywords={eps,cond}}
+
+% Figure Path
+\graphicspath{{figures/}}
+
+% Language Settings
+\setdefaultlanguage{english}			
+\setotherlanguage[spelling=new]{german}
+
+% KOMA script options
+\automark[subsection]{section}			
+\clearscrheadfoot
+\ohead[]{\headmark}
+\ofoot[\pagemark]{\pagemark}
+
+% Font Settings for Open Sans
+\setsansfont[Ligatures=TeX,Numbers=OldStyle]{Open Sans}
+\setmainfont[Ligatures=TeX,Numbers=Monospaced]{Palatino}
+\setmonofont{Source Code Pro}
+\newfontfamily\os{Open Sans}
+\linespread{1.3}\selectfont
+
+% Custom Commands
+\newcommand{\HRule}{\rule{\linewidth}{1.4mm}}
+\newcommand{\Matlab}{\href{http://www.mathworks.com}{MATLAB\textsuperscript{\tiny\textregistered} }}
+\newcommand{\celsius}{{\rmfamily\textit{\textcelsius}}}
+\newcommand\relphantom[1]{\mathrel{\phantom{#1}}}
+\newcommand\cm[1]{\scalebox{1.6}[1.0]{\hspace{0.1mm}-\hspace{0.1mm}}{#1}}
+%\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+
+% PDF Setup
+\hypersetup{%
+pdfauthor={Alexander Zhou},
+pdftitle={Thesis},
+pdfcreator={pdfTeX},
+pdfsubject={Lorem Ipsum},
+pdfkeywords={Lorem ipsum},
+colorlinks,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
+
+% ---------------------------------------------------------------
+% Move numbers of section headings left into the margin
+
+% Re-define \chapterformat only if it is defined and not
+% \relax without making it \relax if it is not defined:
+
+\ifthenelse{\chapmar=1}{
+\begingroup
+\expandafter\expandafter\expandafter\endgroup
+\expandafter\ifx\csname chapterformat\endcsname\relax\else
+  \renewcommand*{\chapterformat}{%
+    \llap{%
+      % Following line is the original definition
+      \chapappifchapterprefix{\ }\thechapter\autodot\enskip
+    }%
+  }
+\fi
+ 
+% Re-define \othersectionlevelsformat
+\renewcommand*{\othersectionlevelsformat}[1]{%
+  \llap{%
+    % Following line is the original definition
+    \csname the#1\endcsname\autodot\enskip
+  }%
+}}
+
+% ---------------------------------------------------------------
+% Titlepage 
+
+\begin{document}
+	
+% Enlarge this page, DIV=14, BCOR=14mm
+\areaset[20mm]{165.0mm}{233.36mm}
+\pagenumbering{roman}
+\pagestyle{plain}
+\thispagestyle{empty}
+\begin{titlepage}\centering
+  \begingroup
+  \vspace*{\stretch{1}}
+  {\os\huge\bfseries Title English\\[3mm]}
+  \HRule\\
+  {\huge\bfseries\textgerman{\os Title Deutsch}\\[6.0cm]}
+  {\large Der \href{http://www.techfak.uni-erlangen.de/}{Technischen Fakult\"at} der\\\href{http://www.uni-erlangen.de/}{Universit\"at Erlangen-N\"urnberg}\\zur Erlangung des Grades\\[0.7cm]}
+  {\os\large\bfseries DOKTOR INGENIEUR\\[0.7cm]}
+  {\large vorgelegt von\\[0.5cm]}
+  {\os\large\bfseries Diplom-Ingenieur Gaius Octavius\\[0.5cm]}
+  {\large Erlangen 20xx\\}
+  \endgroup
+\end{titlepage}
+
+% Reset the typing area, DIV=12, BCOR=14mm
+\areaset[20mm]{157.5mm}{222.75mm}
+\thispagestyle{empty}
+\vspace*{\stretch{1}}
+\begingroup
+\begin{center}
+Als Dissertation genehmigt von der\\[2mm]
+Technischen Fakult\"at der Universit\"at Erlangen-N\"urnberg\\[1cm]
+\end{center}
+\begin{tabbing}
+Tag der Einreichung: \= xx.xx.20xx\\[2mm]
+Tag der Promotion:   \> xx.xx.20xx\\[2mm]
+Dekanin:             \> Prof. Dr.-Ing. A\\[2mm]
+Berichterstatter:    \> Prof. Dr.-Ing. B\\[2mm]
+                     \> Prof. Dr.-Ing. C\\[2mm]
+					 \> Prof. Dr.-Ing. D
+\end{tabbing}
+\endgroup
+\pagebreak
+
+% ---------------------------------------------------------------
+% Abstract & Acknowledgement
+
+\include{00-Acknowledgement}	
+\include{00-Zusammenfassung}
+\include{00-Abstract}
+
+% ---------------------------------------------------------------
+% Table of Contents
+
+\tableofcontents
+\listoffigures
+%\pagebreak
+\listoftables
+
+% ---------------------------------------------------------------
+% Document
+
+\include{00-Nomenclature}
+\pagestyle{scrheadings}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\bibliographystyle{alpha}
+
+\part*{T H E S I S}
+\setcounter{chapter}{-1}
+\include{00-Einleitung}
+\include{01-Introduction}
+\include{02-Fortune}
+\include{03-Conquer}
+\pagestyle{scrplain}
+\include{04-Conclusion}
+
+\part*{A P P E N D I X}
+\appendix
+\include{05-Appendix}
+\bibliography{references/Sample}{}
+
+\end{document}
+
