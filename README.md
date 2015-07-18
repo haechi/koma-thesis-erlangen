@@ -34,12 +34,7 @@ Everything in order to compile the sample thesis.
 5. Examples
 ----------
 
-Tile page
-
 ![Title page](http://haechi.me/assets/images/koma-thesis-erlangen-01.jpg)
-
-
-Chapter opening with hanging and moved chapter number
 
 ![Chapter opening](http://haechi.me/assets/images/koma-thesis-erlangen-02.jpg)
 
